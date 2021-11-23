@@ -23,11 +23,8 @@ def parseSingleTicket(ticket_id):
     except AuthorizeException:
         print("Could not authorize you.....Please check credentials")
         sys.exit()
-    except ForbiddenException:
-        print("URL is not working......")
-        sys.exit()
     except Exception:
-        print("Something went wrong.....")
+        print("Something went wrong.....Please check url once...")
         sys.exit()
     return parsedData
     
@@ -56,11 +53,8 @@ def parseMultipleTickets(page):
     except AuthorizeException:
         print("Could not authorize you.....Please check credentials")
         sys.exit()
-    except ForbiddenException:
-        print("URL is not working......")
-        sys.exit()
     except Exception:
-        print("Something went wrong.....")
+        print("Something went wrong.....Please check url once...")
         sys.exit()
     return full_parsed_data, next, previous
 
