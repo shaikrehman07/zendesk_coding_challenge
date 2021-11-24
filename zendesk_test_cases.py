@@ -11,7 +11,7 @@ class TestZendesk(test.TestCase):
     tickets = [1,2,3,4]
 
     def test_getAllTicketsWithPaging_1(self):
-        value = getAllTicketswithPaging()
+        value = getAllTicketswithPaging(page=1)
         self.assertNotEqual(self.tickets, value)
 
     def test_getAllTicketsWithPaging_2(self):
@@ -29,18 +29,16 @@ class TestZendesk(test.TestCase):
     def test_getData_1(self):
         id = 32324323
         url = 'https://' + credentials.subdomain + '.zendesk.com/api/v2/tickets/' + str(id)
-        self.assertRaises(ValueNotFoundException, getData, url)
+        self.assertRaises(ValueNotFoundException, getData, url, credentials.email, credentials.password)
 
     def test_getData_2(self):
         url = 'https://' + credentials.subdomain + '.zendesk.com/api/v2/tickets/'
-        raw_request = requests.get(url, auth = HTTPBasicAuth(credentials.email, "123456"))
-        unauthorize_code = raw_request.status_code
-        self.assertEqual(401, unauthorize_code)
+        self.assertRaises(AuthorizeException, getData, url, "abc@gmail.com", "1234")
     
     def test_getData_3(self):
-        url = 'https://' + credentials.subdomain + '.zendesk.com/api/v2/tickets/'
-        raw_request = requests.get(url, auth = HTTPBasicAuth(credentials.email, credentials.password))
-        self.assertEqual(200, raw_request.status_code)
+        #url is wrong here
+        url = 'https://' + credentials.subdomain + '.zendesk.com/api/tickets/'
+        self.assertRaises(ForbiddenException, getData, url, credentials.email, credentials.password)
 
 if __name__ == '__main__':
     test.main()
