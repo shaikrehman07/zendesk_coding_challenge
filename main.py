@@ -5,6 +5,7 @@ def menu(option):
     """
     displays menu options and ask inputs from user
     """
+
     if(option == "menu"):
         while True:
             print("\n\t*Select any of the following options")
