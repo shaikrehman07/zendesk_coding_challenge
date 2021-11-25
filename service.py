@@ -88,21 +88,23 @@ def printMultipleticketswithPaging(page):
         for i in range(0,len(data)):
             print("\n" + data[i])
         print(f"\nNext page = {next_page}\nPrevious page = {previous_page}")
+        #Based on next page and prev page details multiple options are made available to end user to procedd further or quit or go to previous list
+        if next_page != None and previous_page == None:
+            print("\nType 'next' for Next 25 Tickets or 'q' to quit")
+            #funtion that handles the inputs given by the user when this method call happens. Inputs should be entered as it suggested by above print statement  in cli 
+            inputs_for_next_prev_quit_for_pages(page, next_page, previous_page)
+        elif next_page != None and previous_page != None:
+            print("\nType 'next' for Next 25 Tickets or 'prev' for previous 25 Tickets or 'q' to quit")
+            #funtion that handles the inputs given by the user when this method call happens. Inputs should be entered as it suggested by above print statement in cli 
+            inputs_for_next_prev_quit_for_pages(page, next_page, previous_page)
+        elif previous_page != None and next_page == None:
+            print("\nType 'prev' for previous 25 Tickets or 'q' to quit")
+            #funtion that handles the inputs given by the user when this method call happens. Inputs should be entered as it suggested by above print statement  in cli 
+            inputs_for_next_prev_quit_for_pages(page, next_page, previous_page)
+        else:
+            print("\n\tThese are the tickets available to print.....")
     else:
         print("No data to print..")
-    #Based on next page and prev page details multiple options are made available to end user to procedd further or quit or go to previous list
-    if next_page != None and previous_page == None:
-        print("\nType 'next' for Next 25 Tickets or 'q' to quit")
-        #funtion that handles the inputs given by the user when this method call happens. Inputs should be entered as it suggested by above print statement  in cli 
-        inputs_for_next_prev_quit_for_pages(page, next_page, previous_page)
-    elif next_page != None and previous_page != None:
-        print("\nType 'next' for Next 25 Tickets or 'prev' for previous 25 Tickets or 'q' to quit")
-        #funtion that handles the inputs given by the user when this method call happens. Inputs should be entered as it suggested by above print statement in cli 
-        inputs_for_next_prev_quit_for_pages(page, next_page, previous_page)
-    elif previous_page != None and next_page == None:
-        print("\nType 'prev' for previous 25 Tickets or 'q' to quit")
-        #funtion that handles the inputs given by the user when this method call happens. Inputs should be entered as it suggested by above print statement  in cli 
-        inputs_for_next_prev_quit_for_pages(page, next_page, previous_page)
 
 def inputs_for_next_prev_quit_for_pages(page, next_page, previous_page):
     option = input("Enter your option: ")
