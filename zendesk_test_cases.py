@@ -16,7 +16,7 @@ class TestZendesk(test.TestCase):
 
     def test_getAllTicketsWithPaging_2(self):
         expected_length_of_data = 25
-        page = 3
+        page = 2
         value = getAllTicketswithPaging(page)
         self.assertEqual(expected_length_of_data, len(value["tickets"]))
 

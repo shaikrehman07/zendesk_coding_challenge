@@ -15,8 +15,10 @@ class TestService(test.TestCase):
 
     def test_parseSingleTicket_2(self):
         ticket_id = 1000
-        expected_output = parseSingleTicket(ticket_id)
-        self.assertEqual("", expected_output)
+        try:
+            parseSingleTicket(ticket_id)
+        except ValueNotFoundException as e:
+            self.assertEqual(type(e), ValueNotFoundException)
 
     def test_parseMultipleTickets_1(self):
         page = 1
